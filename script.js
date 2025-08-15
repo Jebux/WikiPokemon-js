@@ -1,6 +1,6 @@
 // Configuración global
 const API_BASE_URL = 'https://pokeapi.co/api/v2';
-const POKEMON_PER_PAGE = 10;
+const POKEMON_PER_PAGE = 5;
 
 // Variables de estado
 let currentPage = 1;
