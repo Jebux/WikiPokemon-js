@@ -6,23 +6,89 @@
     <title>Wiki Pokémon</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen grid grid-cols-2">
-    <header class="col-span-2">
-        <!-- Navegación principal -->
-         <h1>Header</h1>
+<body class="bg-gray-100 min-h-screen grid grid-cols-1 ld:grid-cols-2">
+    <header class=" col-span-1 ld:col-span-2 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg border-b border-purple-700">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Jx's Wiki</h1>
+            </div>
       </header>
       
-      <div class="layout col-span-2 grid grid-cols-[200px_auto] h-full">
-        <aside class="flex flex-col justify-center sidebar">
-          <!-- Filtros y controles -->
-           <div class="h-48 w-48 flex flex-col justify-center bg-white rounded-lg">
-                <h1>Aside</h1>
-                <h1>Filtros</h1>
-           </div>
-           
+      <div class="layout grid grid-cols-1 md:grid-cols-4 h-full gap-4">
+        <aside class="sidebar pt-5 md:col-span-1 ">
+            <!-- Buscar Pokémon -->
+            <div class="bg-white rounded-2xl shadow-xl p-5 mb-5">
+            <h3 class="text-xl font-extrabold text-indigo-900 flex items-center gap-2">
+                <span>🔎</span> Buscar Pokémon
+            </h3>
+            <input id="searchInput" type="text" placeholder="Buscar por nombre..."
+                    class="mt-3 w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white" />
+            </div>
+
+            <!-- Filtrar por Tipo -->
+            <div class="bg-white rounded-2xl shadow-xl p-5">
+            <h3 class="text-xl font-extrabold text-indigo-900 flex items-center gap-2">
+                <span>🏷️</span> Filtrar por Tipo
+            </h3>
+
+            <!-- Botones de tipo (ESTÁTICOS) -->
+            <div id="typeFilters" class="mt-4 grid grid-cols-2 gap-3">
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-gray-400"      data-type="normal">Normal</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-red-500"       data-type="fire">Fuego</button>
+
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-blue-500"      data-type="water">Agua</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-black bg-yellow-400"    data-type="electric">Eléctrico</button>
+
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-green-500"     data-type="grass">Planta</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-blue-300"      data-type="ice">Hielo</button>
+
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-red-700"       data-type="fighting">Lucha</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-purple-500"    data-type="poison">Veneno</button>
+
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-yellow-600"    data-type="ground">Tierra</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-indigo-400"    data-type="flying">Volador</button>
+
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-pink-500"      data-type="psychic">Psíquico</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-green-400"     data-type="bug">Bicho</button>
+
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-yellow-800"    data-type="rock">Roca</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-purple-700"    data-type="ghost">Fantasma</button>
+
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-indigo-700"    data-type="dragon">Dragón</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-gray-900"      data-type="dark">Siniestro</button>
+
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-gray-500"      data-type="steel">Acero</button>
+                <button type="button" class="type-btn rounded-xl px-4 py-2 font-bold text-white bg-pink-300"      data-type="fairy">Hada</button>
+            </div>
+
+                        <!-- Filtro por Generación -->
+            <div class="bg-white rounded-xl shadow p-4 mt-4">
+            <h3 class="text-xl font-extrabold text-indigo-900 flex items-center gap-2">
+                <span>🏷️</span> Filtrar por Generación
+            </h3>
+            <label for="genSelect" class="block text-sm font-semibold text-gray-700"></label>
+            <select id="genSelect"
+                    class="mt-2 w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="all">Todas (1–7)</option>
+                <option value="1">Gen 1 (001–151)</option>
+                <option value="2">Gen 2 (152–251)</option>
+                <option value="3">Gen 3 (252–386)</option>
+                <option value="4">Gen 4 (387–493)</option>
+                <option value="5">Gen 5 (494–649)</option>
+                <option value="6">Gen 6 (650–721)</option>
+                <option value="7">Gen 7 (722–809)</option>
+            </select>
+            </div>
+
+            <button id="clearFilters"
+                    class="mt-5 w-full rounded-xl px-4 py-3 font-bold text-white bg-orange-500 hover:bg-orange-600">
+                Limpiar Filtros
+            </button>
+            </div>
+
+
         </aside>
       
-        <main class="content">
+        <main class="content md:col-span-3">
           <!-- Grid de Pokémon -->
             <div class="container mx-auto px-4 py-8">
                 <!-- Encabezado -->
@@ -44,7 +110,7 @@
                     </button>
                 </div>
         
-                <!-- Tabla de Pokémon -->
+                <!-- Tabla de Pokémon 
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <table class="w-full">
                         <thead class="bg-blue-500 text-white">
@@ -57,10 +123,24 @@
                             </tr>
                         </thead>
                         <tbody id="pokemonTableBody">
-                            <!-- Los datos se cargarán aquí dinámicamente -->
+                             [Los datos se cargarán aquí dinámicamente]
                         </tbody>
                     </table>
                 </div>
+                -->
+
+                <div class="p-6">
+                <h2 class="text-xl font-bold mb-4 text-blue-600">Pokémon</h2>
+
+                    <!-- Grid de tarjetas -->
+                    <div id="pokemonCardsContainer" 
+                        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <!-- Aquí se insertarán las tarjetas dinámicamente -->
+                        
+                    </div>
+                </div>
+
+                
         
                 <!-- Loading indicator -->
                 <div id="loading" class="text-center py-8 hidden">
@@ -84,10 +164,11 @@
         </main>
       </div>
       
-      <footer class="col-span-2">
-        <!-- Información adicional -->
-         <h1>Footer</h1>
-      </footer>
+      <footer class="col-span-1 ld:col-span-2 bg-gray-50 text-gray-600 border-t shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
+            2025 - Jx's Wiki
+        </div>
+        </footer>
 
 
     <script src="script.js"></script>
